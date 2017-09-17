@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class CurrentWeatherTableViewController: UITableViewController {
     
@@ -15,21 +16,43 @@ class CurrentWeatherTableViewController: UITableViewController {
     let localCityCellIdentifier = "LocalCityCell"
     let updatingCellIdentifier = "UpdatingCell"
     
-    let apiEndpoint = "https://api.openweathermap.org/data/2.5/find?lat=%@&lon=%@&cnt=11&appid=%@"
-    
     let locationManager = CLLocationManager()
     var updatingLocation = false
     var timer: Timer?
     var location: CLLocation?
-
+    
+    var coreDataStack: CoreDataStack!
+    var fetchedResultController: NSFetchedResultsController<City>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareFetchController()
+        fetchedResultController.delegate = self
+        let refreshControll = UIRefreshControl()
+        refreshControll.addTarget(self, action: #selector(getLocation), for: .valueChanged)
+        refreshControll.attributedTitle = NSAttributedString(string: NSLocalizedString("Updating weather info...", comment: "Refresh controll message"))
+        tableView.refreshControl = refreshControll
+        
         getLocation()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getLocation()
+    }
+    
+    func prepareFetchController() {
+        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: #keyPath(City.id), ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataStack.managedContext, sectionNameKeyPath: nil, cacheName: "CityWeather")
+        
+        do {
+            try fetchedResultController.performFetch()
+        } catch let error as NSError {
+            print("Fetching error: \(error), \(error.userInfo)")
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,59 +63,73 @@ class CurrentWeatherTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        guard let sections = fetchedResultController.sections else {
+            return 0
+        }
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 11
+       guard let sectionInfo = fetchedResultController.sections?[section] else { return 0 }
+        if section == 0 && sectionInfo.numberOfObjects == 0 {
+            return 1
+        }
+        return sectionInfo.numberOfObjects
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        //if no data was previous downloaded, than show Loading cell
+        if tableView.numberOfRows(inSection: 0) == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: updatingCellIdentifier, for: indexPath)
+            
+            return cell
+        }
+        
+        if indexPath.row == 0 {
+            return configureThisCityCell(at: indexPath)
+        }
+        
+        return configureLocalCityCell(at: indexPath)
+    }
+    
+    private func configureThisCityCell(at indexPath: IndexPath) -> CurrentCityTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: currentCityCellIdentifier, for: indexPath) as! CurrentCityTableViewCell
+        //TODO: configure cell
+        let currentCity = fetchedResultController.object(at: indexPath)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        
+        cell.statusLabel.text = String(format: "Update at: %@", dateFormatter.string(from: currentCity.renewData! as Date))
+        
+        cell.cityNameLabel.text = currentCity.name ?? NSLocalizedString("Unnown", comment: "Unnown city description")
+        cell.tempLabel.text = String(describing: currentCity.weather?.temperature)
+        cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription
+        
+        guard let conditionIconData = currentCity.weather?.conditionIcon as Data? else { return cell }
+        guard let conditionIcon = UIImage(data: conditionIconData) else { return cell }
+        cell.weatherIconView.image = conditionIcon
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    private func configureLocalCityCell(at indexPath: IndexPath) -> LocalCityTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: localCityCellIdentifier, for: indexPath) as! LocalCityTableViewCell
+        //TODO: configure cell
+        let currentCity = fetchedResultController.object(at: indexPath)
+        
+        cell.cityNameLabel.text = currentCity.name ?? NSLocalizedString("Unnown", comment: "Unnown city description")
+        cell.tempLabel.text = String(describing: currentCity.weather?.temperature)
+        cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription
+        
+        guard let conditionIconData = currentCity.weather?.conditionIcon as Data? else { return cell }
+        guard let conditionIcon = UIImage(data: conditionIconData) else { return cell }
+        cell.weatherIconView.image = conditionIcon
+        return cell
 
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -110,9 +147,8 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
     func getLocation() {
         if Reachability.isInternetAvailable() {
             performLocationSearch()
-            //TODO: Delete all previous location, save new and renew interface
         } else {
-            //TODO: cancel refresh
+            stopRefreshing()
         }
     }
     
@@ -130,6 +166,10 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
         startLocationManager()
     }
     
+    func stopRefreshing() {
+        tableView.refreshControl?.endRefreshing()
+    }
+    
     func startLocationManager() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -143,6 +183,7 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
     
     func didTimeOut() {
         print("*** Time out")
+        stopRefreshing()
         if location == nil {
             stopLocationManager()
         }
@@ -155,7 +196,6 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             updatingLocation = false
             if let timer = timer {
                 timer.invalidate()
-                return
             }
             //perform update only if new search was perform
             performWeatherUpdate()
@@ -222,21 +262,26 @@ extension CurrentWeatherTableViewController {
         let latitude = String(format: "%.2f", newLocation.coordinate.latitude)
         let longitude = String(format: "%.2f", newLocation.coordinate.longitude)
         
-        guard let infoPath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
-            return
-        }
-        guard let infoPlistContent = NSDictionary(contentsOfFile: infoPath) else {
-            return
-        }
-        guard let apiKey = infoPlistContent.object(forKey: "WeatherApiKey") as? String else {
-            return
-        }
-       let requestString = String(format: apiEndpoint, latitude, longitude, apiKey)
+        let forecast = ForecastService(coreDataStack: coreDataStack)
+        forecast.getWeather(forLatitude: latitude, forLongitude: longitude)
         
-        guard let apiRequest = URL(string: requestString) else {
-            return
-        }
-        
+        stopRefreshing()
+        //delete previous find location
+        location = nil
     }
 
+}
+
+extension CurrentWeatherTableViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        self.tableView.reloadData()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 }

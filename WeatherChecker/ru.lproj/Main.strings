@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "3wP-Kj-X4b"; */
+"3wP-Kj-X4b.text" = "Description";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "5lO-FA-oxS"; */
+"5lO-FA-oxS.text" = "Description";
+
+/* Class = "UILabel"; text = "Error"; ObjectID = "8IH-zS-XaX"; */
+"8IH-zS-XaX.text" = "Error";
+
+/* Class = "UINavigationItem"; title = "Current Weather"; ObjectID = "CXB-tW-ZLZ"; */
+"CXB-tW-ZLZ.title" = "Погода Сейчас";
+
+/* Class = "UILabel"; text = "Updating..."; ObjectID = "OyM-Ug-lq3"; */
+"OyM-Ug-lq3.text" = "Updating...";
+
+/* Class = "UILabel"; text = "City"; ObjectID = "UdE-8B-A7Z"; */
+"UdE-8B-A7Z.text" = "City";
+
+/* Class = "UILabel"; text = "City"; ObjectID = "eir-EW-iYN"; */
+"eir-EW-iYN.text" = "City";
+
+/* Class = "UILabel"; text = "Temp"; ObjectID = "g9w-9N-7ez"; */
+"g9w-9N-7ez.text" = "Temp";
+
+/* Class = "UILabel"; text = "Temp"; ObjectID = "p8y-wC-XtL"; */
+"p8y-wC-XtL.text" = "Temp";

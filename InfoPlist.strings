@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  WeatherChecker
+
+  Created by Dmytro Pasinchuk on 18.09.17.
+  Copyright © 2017 Dmytro Pasinchuk. All rights reserved.
+*/
+
+ NSLocationUsageDescription = "Чтобы получить данные о погоде в Вашем местоположении нам нужен доступ к вашим координатам";

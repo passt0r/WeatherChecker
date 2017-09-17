@@ -13,7 +13,7 @@
         <!--Current Weather-->
         <scene sceneID="qqN-5j-FwO">
             <objects>
-                <tableViewController id="pPC-Nv-sdZ" sceneMemberID="viewController">
+                <tableViewController id="pPC-Nv-sdZ" customClass="CurrentWeatherTableViewController" customModule="WeatherChecker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" id="5k7-cd-FVK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s4i-JF-jKW">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_weather" translatesAutoresizingMaskIntoConstraints="NO" id="s4i-JF-jKW">
                                             <rect key="frame" x="10" y="7.5" width="66" height="66"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="Kgz-3y-DoG"/>
@@ -89,7 +89,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="acm-Z8-FTz">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_weather" translatesAutoresizingMaskIntoConstraints="NO" id="acm-Z8-FTz">
                                             <rect key="frame" x="10" y="8" width="44" height="44"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="44" id="89F-wO-ryq"/>
@@ -182,4 +182,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="145.27736131934034"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="default_weather" width="256" height="256"/>
+    </resources>
 </document>
