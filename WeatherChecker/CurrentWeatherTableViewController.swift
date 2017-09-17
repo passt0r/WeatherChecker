@@ -13,14 +13,18 @@ class CurrentWeatherTableViewController: UITableViewController {
     
     let currentCityCellIdentifier = "CurrentCityCell"
     let localCityCellIdentifier = "LocalCityCell"
+    let updatingCellIdentifier = "UpdatingCell"
+    
+    let apiEndpoint = "https://api.openweathermap.org/data/2.5/find?lat=%@&lon=%@&cnt=11&appid=%@"
     
     let locationManager = CLLocationManager()
     var updatingLocation = false
+    var timer: Timer?
     var location: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getLocation()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -107,6 +111,8 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
         if Reachability.isInternetAvailable() {
             performLocationSearch()
             //TODO: Delete all previous location, save new and renew interface
+        } else {
+            //TODO: cancel refresh
         }
     }
     
@@ -121,10 +127,25 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             showLocationManagerAlert()
             return
         }
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        updatingLocation = true
-        locationManager.startUpdatingLocation()
+        startLocationManager()
+    }
+    
+    func startLocationManager() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            updatingLocation = true
+            locationManager.startUpdatingLocation()
+            
+            timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(didTimeOut), userInfo: nil, repeats: false)
+        }
+    }
+    
+    func didTimeOut() {
+        print("*** Time out")
+        if location == nil {
+            stopLocationManager()
+        }
     }
     
     func stopLocationManager() {
@@ -132,17 +153,13 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocation = false
-            
+            if let timer = timer {
+                timer.invalidate()
+                return
+            }
+            //perform update only if new search was perform
             performWeatherUpdate()
         }
-    }
-    
-    func performWeatherUpdate() {
-        guard let newLocation = location else {
-            return
-        }
-        let latitude = String(format: "%.2f", newLocation.coordinate.latitude)
-        let longitude = String(format: "%.2f", newLocation.coordinate.longitude)
     }
     
     func showLocationManagerAlert() {
@@ -171,7 +188,7 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             return
         }
         
-        var distance = CLLocationDistance(DBL_MAX)
+        var distance = CLLocationDistance(Double.greatestFiniteMagnitude)
         if let location = location {
             distance = newLocation.distance(from: location)
         }
@@ -194,4 +211,32 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             }
         }
     }
+}
+
+//MARK: -Perform searching weather data
+extension CurrentWeatherTableViewController {
+    func performWeatherUpdate() {
+        guard let newLocation = location else {
+            return
+        }
+        let latitude = String(format: "%.1f", newLocation.coordinate.latitude)
+        let longitude = String(format: "%.1f", newLocation.coordinate.longitude)
+        
+        guard let infoPath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+            return
+        }
+        guard let infoPlistContent = NSDictionary(contentsOfFile: infoPath) else {
+            return
+        }
+        guard let apiKey = infoPlistContent.object(forKey: "WeatherApiKey") as? String else {
+            return
+        }
+       let requestString = String(format: apiEndpoint, latitude, longitude, apiKey)
+        
+        guard let apiRequest = URL(string: requestString) else {
+            return
+        }
+        
+    }
+
 }
