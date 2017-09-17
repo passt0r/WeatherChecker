@@ -219,8 +219,8 @@ extension CurrentWeatherTableViewController {
         guard let newLocation = location else {
             return
         }
-        let latitude = String(format: "%.1f", newLocation.coordinate.latitude)
-        let longitude = String(format: "%.1f", newLocation.coordinate.longitude)
+        let latitude = String(format: "%.2f", newLocation.coordinate.latitude)
+        let longitude = String(format: "%.2f", newLocation.coordinate.longitude)
         
         guard let infoPath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
             return
