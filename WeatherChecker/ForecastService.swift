@@ -58,7 +58,6 @@ class ForecastService {
         })
     }
     
-    //FIXME: bug is here
     private func deleteAllPreviousData() {
         let fetchCity = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         let fetchWeather = NSFetchRequest<NSFetchRequestResult>(entityName: "Weather")

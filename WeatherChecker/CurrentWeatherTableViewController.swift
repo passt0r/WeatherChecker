@@ -88,10 +88,6 @@ class CurrentWeatherTableViewController: UITableViewController {
             
             return cell
         }
-        //FIXME: For debug
-        print("****")
-        print(indexPath)
-        print("****")
         if indexPath.row == 0 {
             return configureThisCityCell(at: indexPath)
         } else {
@@ -125,11 +121,6 @@ class CurrentWeatherTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: localCityCellIdentifier, for: indexPath) as! LocalCityTableViewCell
         //TODO: configure cell
         let currentCity = fetchedResultController.object(at: indexPath)
-        //FIXME: For debug
-        print(indexPath)
-        print(currentCity.name)
-        print(currentCity.id)
-        print("__________")
         cell.cityNameLabel.text = currentCity.name ?? NSLocalizedString("Unnown", comment: "Unnown city description")
         cell.tempLabel.text = "\(String(describing: currentCity.weather!.temperature))°C"
         cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription

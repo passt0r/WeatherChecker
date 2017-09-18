@@ -8,23 +8,16 @@
 
 import UIKit
 
-class LocalCityTableViewCell: UITableViewCell {
-        @IBOutlet weak var weatherIconView: UIImageView!
+class LocalCityTableViewCell: UITableViewCell, WeatherViewCell {
+    @IBOutlet weak var weatherIconView: UIImageView!
+    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
-        @IBOutlet weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet weak var weatherDescriptionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        weatherIconView.layer.cornerRadius = weatherIconView.bounds.width/2
-        weatherIconView.clipsToBounds = true
-        
-        weatherIconView.layer.shadowColor = UIColor.black.cgColor
-        weatherIconView.layer.shadowOpacity = 0.7
-//        weatherIconView.layer.shadowOffset = CGSize.zero
-        weatherIconView.layer.shadowRadius = weatherIconView.bounds.width/2
-        
-        weatherIconView.layer.shouldRasterize = true
+        setup(imageView: weatherIconView, shadowView: shadowView)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

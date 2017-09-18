@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		591D749D1F6FEAD9009CE3C3 /* Cell+RoundedShadowIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591D749C1F6FEAD9009CE3C3 /* Cell+RoundedShadowIcon.swift */; };
 		593BB0661F6EC508005D62DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593BB0651F6EC508005D62DE /* AppDelegate.swift */; };
 		593BB06B1F6EC508005D62DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 593BB0691F6EC508005D62DE /* Main.storyboard */; };
 		593BB06D1F6EC508005D62DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 593BB06C1F6EC508005D62DE /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		0BF50257796E78DDEBFE12A6 /* Pods_WeatherChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C824101001DBEDE8547DB50 /* Pods-WeatherChecker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherChecker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherChecker/Pods-WeatherChecker.debug.xcconfig"; sourceTree = "<group>"; };
 		3B3A942CBF3ACBE5CAAF0ACC /* Pods-WeatherChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherChecker.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherChecker/Pods-WeatherChecker.release.xcconfig"; sourceTree = "<group>"; };
+		591D749C1F6FEAD9009CE3C3 /* Cell+RoundedShadowIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cell+RoundedShadowIcon.swift"; sourceTree = "<group>"; };
 		593BB0621F6EC508005D62DE /* WeatherChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		593BB0651F6EC508005D62DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		593BB06A1F6EC508005D62DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				593BB0921F6EF5FD005D62DE /* LocalCityTableViewCell.swift */,
 				593BB0901F6EF5EE005D62DE /* CurrentCityTableViewCell.swift */,
+				591D749C1F6FEAD9009CE3C3 /* Cell+RoundedShadowIcon.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				593BB08C1F6EF58C005D62DE /* Weather+CoreDataClass.swift in Sources */,
 				593BB07C1F6ED04E005D62DE /* CoreDataStack.swift in Sources */,
 				593BB08D1F6EF58C005D62DE /* Weather+CoreDataProperties.swift in Sources */,
+				591D749D1F6FEAD9009CE3C3 /* Cell+RoundedShadowIcon.swift in Sources */,
 				593BB0961F6F102E005D62DE /* ForecastService.swift in Sources */,
 				593BB07A1F6ECEB2005D62DE /* CurrentWeatherTableViewController.swift in Sources */,
 				593BB0851F6EDBBC005D62DE /* Reachability.swift in Sources */,
