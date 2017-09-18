@@ -73,14 +73,14 @@ class ForecastService {
         do {
             let weatherDeleteresult = try coreDataStack.managedContext.execute(requestWeatherDelete) as? NSBatchDeleteResult
             let cityDeleteResult = try coreDataStack.managedContext.execute(requestCityDelete) as? NSBatchDeleteResult
-            let weatherIDArray = weatherDeleteresult?.result as? [NSManagedObjectID]
-            let cityIDArray = cityDeleteResult?.result as? [NSManagedObjectID]
+            var deletedIDArray = weatherDeleteresult?.result as? [NSManagedObjectID]
+            let cityDeleteIDArray = cityDeleteResult?.result as? [NSManagedObjectID] ?? [NSManagedObjectID]()
+            deletedIDArray?.append(contentsOf: cityDeleteIDArray)
             
-            let changesInWeather = [NSDeletedObjectsKey: weatherIDArray]
-            let changesInCity = [NSDeletedObjectsKey: cityIDArray]
+            let deleteChanges = [NSDeletedObjectsKey: deletedIDArray]
             
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changesInCity, into: [coreDataStack.managedContext])
-            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changesInWeather, into: [coreDataStack.managedContext])
+            
+            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: deleteChanges, into: [coreDataStack.managedContext])
            
         } catch let error as NSError {
             print("Delete fetching error: \(error), \(error.userInfo)")
