@@ -58,18 +58,30 @@ class ForecastService {
         })
     }
     
+    //FIXME: bug is here
     private func deleteAllPreviousData() {
         let fetchCity = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         let fetchWeather = NSFetchRequest<NSFetchRequestResult>(entityName: "Weather")
         
         let requestCityDelete = NSBatchDeleteRequest(fetchRequest: fetchCity)
+        requestCityDelete.resultType = .resultTypeObjectIDs
         requestCityDelete.affectedStores = coreDataStack.managedContext.persistentStoreCoordinator?.persistentStores
         let requestWeatherDelete = NSBatchDeleteRequest(fetchRequest: fetchWeather)
+        requestWeatherDelete.resultType = .resultTypeObjectIDs
         requestWeatherDelete.affectedStores = coreDataStack.managedContext.persistentStoreCoordinator?.persistentStores
         
         do {
-            try coreDataStack.managedContext.execute(requestWeatherDelete)
-            try coreDataStack.managedContext.execute(requestCityDelete)
+            let weatherDeleteresult = try coreDataStack.managedContext.execute(requestWeatherDelete) as? NSBatchDeleteResult
+            let cityDeleteResult = try coreDataStack.managedContext.execute(requestCityDelete) as? NSBatchDeleteResult
+            let weatherIDArray = weatherDeleteresult?.result as? [NSManagedObjectID]
+            let cityIDArray = cityDeleteResult?.result as? [NSManagedObjectID]
+            
+            let changesInWeather = [NSDeletedObjectsKey: weatherIDArray]
+            let changesInCity = [NSDeletedObjectsKey: cityIDArray]
+            
+            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changesInCity, into: [coreDataStack.managedContext])
+            NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changesInWeather, into: [coreDataStack.managedContext])
+           
         } catch let error as NSError {
             print("Delete fetching error: \(error), \(error.userInfo)")
         }
@@ -88,8 +100,6 @@ class ForecastService {
                 return
             }
             let name = city["name"] as? String ?? ""
-            //FIXME: For debug
-            print(name)
             guard let coordinates = city["coord"] as? [String: Any] else {
                 return
             }

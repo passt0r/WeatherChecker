@@ -281,21 +281,9 @@ extension CurrentWeatherTableViewController {
 }
 
 extension CurrentWeatherTableViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        //TODO: this is works, but it is not solution, it's for time
-        do {
-            try controller.managedObjectContext.refreshAllObjects()
-        } catch let error as NSError {
-            print("Update error: \(error), \(error.userInfo)")
-        }
-        self.tableView.reloadData()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        stopRefreshing()
-    }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        stopRefreshing()
+        self.tableView.reloadData()
     }
 }
