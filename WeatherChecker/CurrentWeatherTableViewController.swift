@@ -24,10 +24,13 @@ class CurrentWeatherTableViewController: UITableViewController {
     var coreDataStack: CoreDataStack!
     var fetchedResultController: NSFetchedResultsController<City>!
     
+    var forecast: ForecastService!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareFetchController()
         fetchedResultController.delegate = self
+        forecast = ForecastService(coreDataStack: coreDataStack)
         let refreshControll = UIRefreshControl()
         refreshControll.addTarget(self, action: #selector(getLocation), for: .valueChanged)
         refreshControll.attributedTitle = NSAttributedString(string: NSLocalizedString("Updating weather info...", comment: "Refresh controll message"))
@@ -109,8 +112,8 @@ class CurrentWeatherTableViewController: UITableViewController {
         cell.tempLabel.text = String(describing: currentCity.weather?.temperature)
         cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription
         
-        guard let conditionIconData = currentCity.weather?.conditionIcon as Data? else { return cell }
-        guard let conditionIcon = UIImage(data: conditionIconData) else { return cell }
+        guard let conditionIconName = currentCity.weather?.iconName else { return cell }
+        guard let conditionIcon = UIImage(named: conditionIconName) else { return cell }
         cell.weatherIconView.image = conditionIcon
         return cell
     }
@@ -124,8 +127,8 @@ class CurrentWeatherTableViewController: UITableViewController {
         cell.tempLabel.text = String(describing: currentCity.weather?.temperature)
         cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription
         
-        guard let conditionIconData = currentCity.weather?.conditionIcon as Data? else { return cell }
-        guard let conditionIcon = UIImage(data: conditionIconData) else { return cell }
+        guard let conditionIconName = currentCity.weather?.iconName else { return cell }
+        guard let conditionIcon = UIImage(named: conditionIconName) else { return cell }
         cell.weatherIconView.image = conditionIcon
         return cell
 
@@ -262,10 +265,8 @@ extension CurrentWeatherTableViewController {
         let latitude = String(format: "%.2f", newLocation.coordinate.latitude)
         let longitude = String(format: "%.2f", newLocation.coordinate.longitude)
         
-        let forecast = ForecastService(coreDataStack: coreDataStack)
         forecast.getWeather(forLatitude: latitude, forLongitude: longitude)
         
-        stopRefreshing()
         //delete previous find location
         location = nil
     }
@@ -278,6 +279,9 @@ extension CurrentWeatherTableViewController: NSFetchedResultsControllerDelegate 
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        stopRefreshing()
+        //TODO: this is works, but it is not solution, it's for time
         self.tableView.reloadData()
     }
     

@@ -2,7 +2,7 @@
 //  Weather+CoreDataProperties.swift
 //  WeatherChecker
 //
-//  Created by Dmytro Pasinchuk on 17.09.17.
+//  Created by Dmytro Pasinchuk on 18.09.17.
 //  Copyright © 2017 Dmytro Pasinchuk. All rights reserved.
 //
 
@@ -16,11 +16,10 @@ extension Weather {
         return NSFetchRequest<Weather>(entityName: "Weather")
     }
 
-    @NSManaged public var temperature: Int32
     @NSManaged public var condition: String?
-    @NSManaged public var conditionIcon: NSData?
     @NSManaged public var conditionDescription: String?
     @NSManaged public var iconName: String?
+    @NSManaged public var temperature: Int32
     @NSManaged public var city: City?
 
 }
