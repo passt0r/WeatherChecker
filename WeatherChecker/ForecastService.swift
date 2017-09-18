@@ -47,11 +47,13 @@ class ForecastService {
             guard let result = response.result.value as? [String: Any] else {
                 return
             }
-            self.deleteAllPreviousData()
-            
-            self.processResponse(result)
-            
-            self.coreDataStack.saveContext()
+            DispatchQueue.main.async {
+                self.deleteAllPreviousData()
+                
+                self.processResponse(result)
+                
+                self.coreDataStack.saveContext()
+            }
             
         })
     }
@@ -86,7 +88,8 @@ class ForecastService {
                 return
             }
             let name = city["name"] as? String ?? ""
-            
+            //FIXME: For debug
+            print(name)
             guard let coordinates = city["coord"] as? [String: Any] else {
                 return
             }
@@ -111,7 +114,6 @@ class ForecastService {
             newCity.renewData = newUpdateDate as NSDate
             newCity.latitude = lat
             newCity.longtitude = lon
-            
             let newWeather = Weather(context: coreDataStack.managedContext)
             newWeather.city = newCity
             newWeather.temperature = Int32(temperature)

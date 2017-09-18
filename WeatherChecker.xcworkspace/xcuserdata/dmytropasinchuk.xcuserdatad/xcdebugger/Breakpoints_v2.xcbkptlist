@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,27 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "processResponse(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
             <Locations>
@@ -122,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
             <Locations>
@@ -170,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -186,27 +170,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "processResponse(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
             endingLineNumber = "104"
+            landmarkName = "processResponse(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherChecker/ForecastService.swift"
+            timestampString = "527392619.538278"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
             <Locations>
@@ -250,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390275.476195"
+            timestampString = "527392619.538278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/ForecastService.swift"
-            timestampString = "527390791.293933"
+            timestampString = "527393046.527433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "processResponse(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/CurrentWeatherTableViewController.swift"
-            timestampString = "527391396.594347"
+            timestampString = "527393786.039797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "configureThisCityCell(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,59 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/CurrentWeatherTableViewController.swift"
-            timestampString = "527391396.594347"
+            timestampString = "527393786.039797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "configureLocalCityCell(at:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherChecker.CurrentWeatherTableViewController.(configureLocalCityCell in _50BCCD71CC1F1B66912A0C0C8AFDF5E4) (at : Foundation.IndexPath) -&gt; WeatherChecker.LocalCityTableViewCell"
-                  moduleName = "WeatherChecker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dmytropasinchuk/TestProjects/WeatherChecker/WeatherChecker/CurrentWeatherTableViewController.swift"
-                  timestampString = "527391265.521803"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "126"
-                  endingLineNumber = "126"
-                  offsetFromSymbolStart = "800">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherChecker.CurrentWeatherTableViewController.((configureLocalCityCell in _50BCCD71CC1F1B66912A0C0C8AFDF5E4) (at : Foundation.IndexPath) -&gt; WeatherChecker.LocalCityTableViewCell).(implicit closure #1)"
-                  moduleName = "WeatherChecker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dmytropasinchuk/TestProjects/WeatherChecker/WeatherChecker/CurrentWeatherTableViewController.swift"
-                  timestampString = "527391265.524829"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "126"
-                  endingLineNumber = "126"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeatherChecker/CurrentWeatherTableViewController.swift"
-            timestampString = "527391372.795833"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeatherChecker/CurrentWeatherTableViewController.swift"
-            timestampString = "527391383.254523"
+            timestampString = "527393786.039797"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>

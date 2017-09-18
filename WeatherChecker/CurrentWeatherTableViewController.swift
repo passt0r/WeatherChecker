@@ -35,8 +35,6 @@ class CurrentWeatherTableViewController: UITableViewController {
         refreshControll.addTarget(self, action: #selector(getLocation), for: .valueChanged)
         refreshControll.attributedTitle = NSAttributedString(string: NSLocalizedString("Updating weather info...", comment: "Refresh controll message"))
         tableView.refreshControl = refreshControll
-        
-        getLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,10 +84,14 @@ class CurrentWeatherTableViewController: UITableViewController {
         //if no data was previous downloaded, than show Loading cell
         if tableView.numberOfRows(inSection: 0) == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: updatingCellIdentifier, for: indexPath)
+            getLocation()
             
             return cell
         }
-        
+        //FIXME: For debug
+        print("****")
+        print(indexPath)
+        print("****")
         if indexPath.row == 0 {
             return configureThisCityCell(at: indexPath)
         } else {
@@ -123,7 +125,11 @@ class CurrentWeatherTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: localCityCellIdentifier, for: indexPath) as! LocalCityTableViewCell
         //TODO: configure cell
         let currentCity = fetchedResultController.object(at: indexPath)
-        
+        //FIXME: For debug
+        print(indexPath)
+        print(currentCity.name)
+        print(currentCity.id)
+        print("__________")
         cell.cityNameLabel.text = currentCity.name ?? NSLocalizedString("Unnown", comment: "Unnown city description")
         cell.tempLabel.text = "\(String(describing: currentCity.weather!.temperature))°C"
         cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription

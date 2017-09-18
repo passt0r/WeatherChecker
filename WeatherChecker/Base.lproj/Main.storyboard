@@ -14,12 +14,12 @@
         <scene sceneID="qqN-5j-FwO">
             <objects>
                 <tableViewController id="pPC-Nv-sdZ" customClass="CurrentWeatherTableViewController" customModule="WeatherChecker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" id="5k7-cd-FVK">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" id="5k7-cd-FVK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrentCityCell" rowHeight="80" id="iy7-j1-UAf" customClass="CurrentCityTableViewCell" customModule="WeatherChecker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CurrentCityCell" rowHeight="80" id="iy7-j1-UAf" customClass="CurrentCityTableViewCell" customModule="WeatherChecker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iy7-j1-UAf" id="I9Z-wR-ra3">
@@ -82,7 +82,7 @@
                                     <outlet property="weatherIconView" destination="s4i-JF-jKW" id="MRA-tb-PH4"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocalCityCell" rowHeight="60" id="ADk-YC-xta" customClass="LocalCityTableViewCell" customModule="WeatherChecker" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocalCityCell" rowHeight="60" id="ADk-YC-xta" customClass="LocalCityTableViewCell" customModule="WeatherChecker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="108" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ADk-YC-xta" id="fej-Ah-Xfx">
@@ -134,7 +134,7 @@
                                     <outlet property="weatherIconView" destination="acm-Z8-FTz" id="xmW-X0-Wmn"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpdatingCell" textLabel="OyM-Ug-lq3" rowHeight="60" style="IBUITableViewCellStyleDefault" id="mxc-Ug-7fS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpdatingCell" textLabel="OyM-Ug-lq3" rowHeight="60" style="IBUITableViewCellStyleDefault" id="mxc-Ug-7fS">
                                 <rect key="frame" x="0.0" y="168" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mxc-Ug-7fS" id="S06-sE-14u">
