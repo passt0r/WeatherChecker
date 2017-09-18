@@ -10,14 +10,13 @@ import UIKit
 
 class LocalCityTableViewCell: UITableViewCell, WeatherViewCell {
     @IBOutlet weak var weatherIconView: UIImageView!
-    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        setup(imageView: weatherIconView, shadowView: shadowView)
+        setup(imageView: weatherIconView, shadowView: self.contentView)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
