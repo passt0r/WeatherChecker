@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  WeatherChecker
+
+  Created by Dmytro Pasinchuk on 18.09.17.
+  Copyright © 2017 Dmytro Pasinchuk. All rights reserved.
+*/
+
+ NSLocationUsageDescription = "We need access to your location to get info about your local weather condition";
