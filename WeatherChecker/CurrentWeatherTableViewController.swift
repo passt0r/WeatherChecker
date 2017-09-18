@@ -78,6 +78,14 @@ class CurrentWeatherTableViewController: UITableViewController {
         }
         return sectionInfo.numberOfObjects
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 80
+        } else {
+            return 60
+        }
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
