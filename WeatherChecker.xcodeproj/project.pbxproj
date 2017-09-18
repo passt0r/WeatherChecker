@@ -84,12 +84,11 @@
 		593BB0641F6EC508005D62DE /* WeatherChecker */ = {
 			isa = PBXGroup;
 			children = (
+				593BB0651F6EC508005D62DE /* AppDelegate.swift */,
 				593BB08F1F6EF5A9005D62DE /* Model */,
 				593BB0941F6EF605005D62DE /* View */,
-				593BB0651F6EC508005D62DE /* AppDelegate.swift */,
-				593BB0841F6EDBBC005D62DE /* Reachability.swift */,
+				59CC20471F6F59C9004CBE6D /* Network */,
 				593BB0791F6ECEB2005D62DE /* CurrentWeatherTableViewController.swift */,
-				593BB0951F6F102E005D62DE /* ForecastService.swift */,
 				593BB0691F6EC508005D62DE /* Main.storyboard */,
 				593BB06E1F6EC508005D62DE /* LaunchScreen.storyboard */,
 				593BB06C1F6EC508005D62DE /* Assets.xcassets */,
@@ -119,6 +118,15 @@
 				593BB0901F6EF5EE005D62DE /* CurrentCityTableViewCell.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		59CC20471F6F59C9004CBE6D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				593BB0841F6EDBBC005D62DE /* Reachability.swift */,
+				593BB0951F6F102E005D62DE /* ForecastService.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		8E9A1C1742CE7F1F023D1B29 /* Pods */ = {

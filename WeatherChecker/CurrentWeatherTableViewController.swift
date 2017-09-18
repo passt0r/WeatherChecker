@@ -92,9 +92,10 @@ class CurrentWeatherTableViewController: UITableViewController {
         
         if indexPath.row == 0 {
             return configureThisCityCell(at: indexPath)
+        } else {
+            return configureLocalCityCell(at: indexPath)
         }
         
-        return configureLocalCityCell(at: indexPath)
     }
     
     private func configureThisCityCell(at indexPath: IndexPath) -> CurrentCityTableViewCell {
@@ -109,7 +110,7 @@ class CurrentWeatherTableViewController: UITableViewController {
         cell.statusLabel.text = String(format: "Update at: %@", dateFormatter.string(from: currentCity.renewData! as Date))
         
         cell.cityNameLabel.text = currentCity.name ?? NSLocalizedString("Unnown", comment: "Unnown city description")
-        cell.tempLabel.text = String(describing: currentCity.weather?.temperature)
+        cell.tempLabel.text = "\(String(describing: currentCity.weather!.temperature))°C"
         cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription
         
         guard let conditionIconName = currentCity.weather?.iconName else { return cell }
@@ -124,7 +125,7 @@ class CurrentWeatherTableViewController: UITableViewController {
         let currentCity = fetchedResultController.object(at: indexPath)
         
         cell.cityNameLabel.text = currentCity.name ?? NSLocalizedString("Unnown", comment: "Unnown city description")
-        cell.tempLabel.text = String(describing: currentCity.weather?.temperature)
+        cell.tempLabel.text = "\(String(describing: currentCity.weather!.temperature))°C"
         cell.weatherDescriptionLabel.text = currentCity.weather?.conditionDescription
         
         guard let conditionIconName = currentCity.weather?.iconName else { return cell }
@@ -275,17 +276,20 @@ extension CurrentWeatherTableViewController {
 
 extension CurrentWeatherTableViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        //TODO: this is works, but it is not solution, it's for time
+        do {
+            try controller.performFetch()
+        } catch let error as NSError {
+            print("Update error: \(error), \(error.userInfo)")
+        }
+        self.tableView.reloadData()
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         stopRefreshing()
-        //TODO: this is works, but it is not solution, it's for time
-        self.tableView.reloadData()
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
     }
 }

@@ -48,7 +48,9 @@ class ForecastService {
                 return
             }
             self.deleteAllPreviousData()
+            
             self.processResponse(result)
+            
             self.coreDataStack.saveContext()
             
         })
@@ -59,7 +61,9 @@ class ForecastService {
         let fetchWeather = NSFetchRequest<NSFetchRequestResult>(entityName: "Weather")
         
         let requestCityDelete = NSBatchDeleteRequest(fetchRequest: fetchCity)
+        requestCityDelete.affectedStores = coreDataStack.managedContext.persistentStoreCoordinator?.persistentStores
         let requestWeatherDelete = NSBatchDeleteRequest(fetchRequest: fetchWeather)
+        requestWeatherDelete.affectedStores = coreDataStack.managedContext.persistentStoreCoordinator?.persistentStores
         
         do {
             try coreDataStack.managedContext.execute(requestWeatherDelete)
@@ -95,10 +99,11 @@ class ForecastService {
             }
             let temperature = main["temp"] as? Int ?? 0
             
-            guard let weather = city["weather"] as? [String: Any] else { return }
-            let condition = weather["main"] as? String ?? ""
-            let description = weather["description"] as? String ?? ""
-            let iconName = weather["icon"] as? String ?? "default_weather"
+            guard let weather = city["weather"] as? [Any] else { return }
+            guard let firstWeatherDescriptor = weather.first as? [String: Any] else { return }
+            let condition = firstWeatherDescriptor["main"] as? String ?? ""
+            let description = firstWeatherDescriptor["description"] as? String ?? ""
+            let iconName = firstWeatherDescriptor["icon"] as? String ?? "default_weather"
             
             let newCity = City(context: coreDataStack.managedContext)
             newCity.name = name
