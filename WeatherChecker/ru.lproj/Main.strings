@@ -11,11 +11,11 @@
 /* Class = "UINavigationItem"; title = "Current Weather"; ObjectID = "CXB-tW-ZLZ"; */
 "CXB-tW-ZLZ.title" = "Погода Сейчас";
 
-/* Class = "UILabel"; text = "Updating..."; ObjectID = "OyM-Ug-lq3"; */
-"OyM-Ug-lq3.text" = "Updating...";
-
 /* Class = "UILabel"; text = "City"; ObjectID = "UdE-8B-A7Z"; */
 "UdE-8B-A7Z.text" = "City";
+
+/* Class = "UILabel"; text = "Updating..."; ObjectID = "XO1-Vv-h5R"; */
+"XO1-Vv-h5R.text" = "Обновление...";
 
 /* Class = "UILabel"; text = "City"; ObjectID = "eir-EW-iYN"; */
 "eir-EW-iYN.text" = "City";

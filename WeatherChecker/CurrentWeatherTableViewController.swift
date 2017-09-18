@@ -35,6 +35,7 @@ class CurrentWeatherTableViewController: UITableViewController {
         refreshControll.addTarget(self, action: #selector(getLocation), for: .valueChanged)
         refreshControll.attributedTitle = NSAttributedString(string: NSLocalizedString("Updating weather info...", comment: "Refresh controll message"))
         tableView.refreshControl = refreshControll
+        getLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -184,9 +185,9 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             updatingLocation = true
-            locationManager.startUpdatingLocation()
-            
+            timer?.invalidate()
             timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(didTimeOut), userInfo: nil, repeats: false)
+            locationManager.startUpdatingLocation()
         }
     }
     
@@ -203,9 +204,7 @@ extension CurrentWeatherTableViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocation = false
-            if let timer = timer {
-                timer.invalidate()
-            }
+            timer?.invalidate()
             //perform update only if new search was perform
             performWeatherUpdate()
         }

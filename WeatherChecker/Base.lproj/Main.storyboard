@@ -134,21 +134,32 @@
                                     <outlet property="weatherIconView" destination="h8K-Rl-2jK" id="JAU-7g-fYE"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpdatingCell" textLabel="OyM-Ug-lq3" rowHeight="80" style="IBUITableViewCellStyleDefault" id="mxc-Ug-7fS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UpdatingCell" rowHeight="80" id="mxc-Ug-7fS">
                                 <rect key="frame" x="0.0" y="168" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mxc-Ug-7fS" id="S06-sE-14u">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Updating..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OyM-Ug-lq3">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW9-W0-22w">
+                                            <rect key="frame" x="108" y="29" width="104.5" height="20"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updating..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XO1-Vv-h5R">
+                                                    <rect key="frame" x="0.0" y="0.0" width="84.5" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0ju-Q2-d2v">
+                                                    <rect key="frame" x="84.5" y="0.0" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="CW9-W0-22w" firstAttribute="centerY" secondItem="S06-sE-14u" secondAttribute="centerY" id="Pu3-jA-Hw0"/>
+                                        <constraint firstItem="CW9-W0-22w" firstAttribute="centerX" secondItem="S06-sE-14u" secondAttribute="centerX" id="zAM-L3-Fhb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
